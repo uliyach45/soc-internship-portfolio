@@ -172,8 +172,8 @@ See [REFERENCES.md](REFERENCES.md) for the full citation list covering Kaspersky
 ## About
 
 **Author:** Uliya Fatima  
-**GitHub:** [your-github-username](https://github.com/your-github-username) <!-- TODO: replace with your real handle -->  
-**Email:** your-email@example.com <!-- TODO: add your public email -->  
+**GitHub:** (https://github.com/uliyach45) <!-- TODO: replace with your real handle -->  
+**Email:** uliyafatima82@gmail.com <!-- TODO: add your public email -->  
 **Domain:** Cyber Security - SOC, Detection Engineering, Threat Intelligence
 
 Organisation name, internal addresses and hostnames have been generalised (placeholder values such as `10.0.0.x` and `WIN-ENDPOINT` are used). This portfolio is shared for educational and professional showcase purposes. No proprietary data or real internal identifiers from the host environment are reproduced.
