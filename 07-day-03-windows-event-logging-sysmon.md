@@ -8,7 +8,7 @@
 | ------------ | ------------------------------------------------------- |
 | Date         | August 5, 2026                                          |
 | Topic        | Windows Event Logging & Sysmon Setup                    |
-| Environment  | Windows workstation (local VM)                          |
+| Environment  | Windows workstation                                     |
 | Topic area   | Windows logging fundamentals, audit policy, Sysmon EDR  |
 
 ---
@@ -72,7 +72,13 @@ After resolving these, Sysmon was successfully installed:
 Sysmon64.exe -accepteula -i sysmonconfig-export.xml
 ```
 
+![Sysmon installed with the SwiftOnSecurity configuration](screenshot-07-day-03-sysmon-install.png)
+*Sysmon installed with the SwiftOnSecurity configuration*
+
 Sysmon logging was verified active under: **Applications and Services Logs -> Microsoft -> Windows -> Sysmon -> Operational**.
+
+![Sysmon Operational log in Event Viewer (Process Create and Network Connection events)](screenshot-07-day-03-sysmon-operational-log.png)
+*Sysmon Operational log in Event Viewer (Process Create and Network Connection events)*
 
 ### 4. Test Event Generation & Analysis
 

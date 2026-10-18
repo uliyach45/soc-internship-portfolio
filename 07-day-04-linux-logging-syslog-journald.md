@@ -98,20 +98,9 @@ Without them, there is no reliable way to answer *"who logged in, from where, an
    tail -f /var/log/auth.log
    ```
 
-> **Note:** log lines below are illustrative samples (user, IP and timestamps are placeholders), not exported logs.
+3. Generated a successful SSH login event and confirmed it appeared correctly in both log sources.
 
-3. Generated a successful SSH login event and confirmed it appeared correctly in both log sources. Sample observed line:
-
-   ```
-   Aug  6 14:23:11 ubuntu sshd[12345]: Accepted password for labuser from 192.168.1.10 port 51432 ssh2
-   ```
-
-4. Generated failed login events (wrong password, nonexistent user) and confirmed `Failed password` and `invalid user` entries appeared as expected:
-
-   ```
-   Aug  6 14:25:42 ubuntu sshd[12346]: Failed password for labuser from 192.168.1.10 port 51440 ssh2
-   Aug  6 14:26:03 ubuntu sshd[12347]: Failed password for invalid user nosuchuser from 192.168.1.10 port 51444 ssh2
-   ```
+4. Generated failed login events (wrong password, nonexistent user) and confirmed `Failed password` and `invalid user` entries appeared as expected.
 
 5. Reviewed the rsyslog facility-routing configuration to understand why auth-related events land specifically in `auth.log`:
 
@@ -122,45 +111,22 @@ Without them, there is no reliable way to answer *"who logged in, from where, an
 6. Used the `logger` command to manually inject a tagged test message and confirmed it routed to the correct log file based on its facility tag:
 
    ```bash
-   logger -t TESTMARK "verifying facility routing"
-   tail /var/log/syslog | grep TESTMARK
+   logger -p auth.warning "Test warning message tagged as auth facility"
+   tail -5 /var/log/auth.log
    ```
 
 ---
 
-## Sample Log Output
+## Screenshots
 
-### SSH Service Status
+![SSH service status, then started and enabled](screenshot-07-day-04-ssh-service-status.png)
+*SSH service status, then started and enabled*
 
-```bash
-$ systemctl status ssh
-* ssh.service - OpenBSD Secure Shell server
-   Loaded: loaded (/lib/systemd/system/ssh.service; enabled; vendor preset: enabled)
-   Active: active (running) since ...
-```
+![journalctl output: failed password, invalid user and accepted password events (local test, 127.0.0.1)](screenshot-07-day-04-ssh-login-events.png)
+*journalctl output: failed password, invalid user and accepted password events (local test, 127.0.0.1)*
 
-### Successful Login Event
-
-```
-Aug 6 14:23:11 ubuntu sshd[12345]: Accepted password for labuser from 192.168.1.10 port 51432 ssh2
-Aug 6 14:23:11 ubuntu sshd[12345]: pam_unix(sshd:session): session opened for user labuser by (uid=0)
-```
-
-### Failed Login Event
-
-```
-Aug 6 14:25:42 ubuntu sshd[12346]: Failed password for labuser from 192.168.1.10 port 51440 ssh2
-Aug 6 14:26:03 ubuntu sshd[12347]: Failed password for invalid user nosuchuser from 192.168.1.10 port 51444 ssh2
-Aug 6 14:26:03 ubuntu sshd[12347]: Connection closed by invalid user nosuchuser 192.168.1.10 port 51444 [preauth]
-```
-
-### logger Command Test
-
-```bash
-$ logger -t TESTMARK "verifying facility routing"
-$ tail /var/log/syslog | grep TESTMARK
-Aug 6 14:28:11 ubuntu TESTMARK[12468]: verifying facility routing
-```
+![logger command test: message tagged with the auth facility appearing in auth.log](screenshot-07-day-04-logger-test.png)
+*logger command test: message tagged with the auth facility appearing in auth.log*
 
 ---
 

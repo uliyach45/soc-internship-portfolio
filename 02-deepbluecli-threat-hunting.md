@@ -54,6 +54,9 @@ DeepBlueCLI detected a Distributed Account Explicit Credential Use pattern consi
 | Host                   | DESKTOP-JR78RLP                                                   |
 | Message                | Distributed Account Explicit Credential Use (Password Spray Attack) |
 
+![DeepBlueCLI output on password-spray.evtx: password spray (4648, 41 accounts) and audit log clear (1102)](screenshot-02-deepblue-password-spray.png)
+*DeepBlueCLI output on password-spray.evtx: password spray (4648, 41 accounts) and audit log clear (1102)*
+
 ### Finding 2 - Security Audit Log Clear (Event ID 1102)
 
 **Sample:** `password-spray.evtx` (same log)
@@ -85,6 +88,9 @@ Remote thread creation into `lsass.exe` is particularly significant because it i
 | Lateral indicator      | WMI-launched cmd.exe                   |
 | Lateral indicator      | ADMIN$ share access                    |
 
+![DeepBlueCLI output on metasploit-sysmon.evtx: remote threads into winlogon.exe and lsass.exe, WMI-launched cmd.exe](screenshot-02-deepblue-metasploit-sysmon.png)
+*DeepBlueCLI output on metasploit-sysmon.evtx: remote threads into winlogon.exe and lsass.exe, WMI-launched cmd.exe*
+
 ### Finding 4 - Obfuscated PowerShell (Event ID 4104)
 
 **Sample:** `Powershell-Invoke-Obfuscation-many.evtx`
@@ -100,6 +106,13 @@ The PowerShell obfuscation sample produced multiple Event ID 4104 detections (Po
 | Long / obfuscated commands      | Heuristic flag for encoded or chained payloads                          |
 
 The combination of `DownloadString` + `Invoke-Expression` + `Mimikatz` reference is a strong indicator of a fileless attack chain: download a remote script, evaluate it in memory, and execute Mimikatz to harvest credentials without writing the binary to disk.
+
+---
+
+![DeepBlueCLI output on Powershell-Invoke-Obfuscation-many.evtx: obfuscated PowerShell (4104)](screenshot-02-deepblue-powershell-obfuscation.png)
+*DeepBlueCLI output on Powershell-Invoke-Obfuscation-many.evtx: obfuscated PowerShell (4104)*
+
+> The `.evtx` samples used here come from the public DeepBlueCLI repository; the usernames and hostnames in the screenshots belong to those sample logs.
 
 ---
 

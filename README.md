@@ -8,7 +8,7 @@
 
 This repository documents technical work completed during an eight-week SOC internship at a national regulatory authority (air-gapped, regulated environment). The programme progressed from regulatory orientation and SOC fundamentals to independent engineering deliverables spanning network isolation, detection engineering, enterprise endpoint concepts, network traffic investigation, and a working SIEM-TIP intelligence pipeline.
 
-All hands-on work was performed inside an access-controlled guest workstation with no external sharing, USB, or internet-upload access. Findings are therefore presented in narrative form. Code and configuration snippets in this repository are **illustrative reconstructions** (clearly labelled as such), not exported originals.
+All hands-on work was performed inside an access-controlled guest workstation with no external sharing, USB, or internet-upload access. Findings are therefore presented in narrative form. Code and configuration snippets in this repository are **illustrative reconstructions** (clearly labelled as such), not exported originals. Screenshots are included only for exercises run on public sample data or on a local lab machine; screenshots from the host organisation's environment are not included.
 
 ---
 
@@ -172,8 +172,8 @@ See [REFERENCES.md](REFERENCES.md) for the full citation list covering Kaspersky
 ## About
 
 **Author:** Uliya Fatima  
-**GitHub:** uliyach45(https://github.com/uliyach45) <!-- TODO: replace with your real handle -->  
-**Email:** uliyafatima82@gmail.com <!-- TODO: add your public email -->  
+**GitHub:** [your-github-username](https://github.com/your-github-username) <!-- TODO: replace with your real handle -->  
+**Email:** your-email@example.com <!-- TODO: add your public email -->  
 **Domain:** Cyber Security - SOC, Detection Engineering, Threat Intelligence
 
 Organisation name, internal addresses and hostnames have been generalised (placeholder values such as `10.0.0.x` and `WIN-ENDPOINT` are used). This portfolio is shared for educational and professional showcase purposes. No proprietary data or real internal identifiers from the host environment are reproduced.

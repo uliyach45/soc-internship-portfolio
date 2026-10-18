@@ -121,6 +121,9 @@ This search returned **386 events** across the full time range. The internal hos
 - `224.0.0.251` multicast (mDNS), expected background traffic
 - `79.124.78.197`, `20.189.173.18`, `20.10.31.115` external IPs (see Findings)
 
+![Splunk search: 386 Zeek events ingested (index=zeek, sourcetype=zeek_json)](screenshot-03-splunk-scoping-386-events.png)
+*Splunk search: 386 Zeek events ingested (index=zeek, sourcetype=zeek_json)*
+
 #### Dashboard Panels (SPL queries)
 
 | Panel                          | Purpose                                              | SPL                                                                                       |
@@ -148,11 +151,20 @@ The **External Destinations** panel confirms the ranking of outbound contacts fr
 | 20.189.173.18        | single digit     | Microsoft Azure - benign                |
 | 20.96.153.111        | single digit     | Microsoft Azure - benign                |
 
+![External destinations ranked by connection count](screenshot-03-splunk-external-destinations.png)
+*External destinations ranked by connection count*
+
 `79.124.78.197` stands out sharply with 68 connections - an order of magnitude above the next external IP. The remaining external addresses each have single-digit connection counts and fall within known Microsoft Azure / Akamai CDN address ranges, consistent with routine Windows Update, Office 365, and telemetry traffic.
 
 The **beaconing/duration** panel adds average connection duration per pair. `172.17.0.99 -> 79.124.78.197` shows 68 connections at an average duration of ~75 seconds - both the count and duration are the highest of any non-broadcast pairing in the dataset, which is why this destination is carried forward as the primary finding.
 
+![Connection count and average duration per host pair (beaconing check)](screenshot-03-splunk-duration-by-host-pair.png)
+*Connection count and average duration per host pair (beaconing check)*
+
 The **DNS query panel** (106 distinct query events) was also reviewed. Observed queries are dominated by standard Windows/Office 365 telemetry and update domains (`windowsupdate.com`, `*.office.com`, `onecollector...sfx.ms`, `live.com`, Adobe update check), along with internal Active Directory SRV lookups (`_ldap._tcp...` resolving against `bepositive.com`, the environment's internal AD domain). No queries to newly-registered, algorithmically-generated, or otherwise suspicious-looking domains were observed in this sample.
+
+![DNS query volume panel (106 events)](screenshot-03-splunk-dns-queries.png)
+*DNS query volume panel (106 events)*
 
 ---
 
