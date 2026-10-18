@@ -172,7 +172,7 @@ See [REFERENCES.md](REFERENCES.md) for the full citation list covering Kaspersky
 ## About
 
 **Author:** Uliya Fatima  
-**GitHub:** uliyach45(https://github.com/your-github-uliyach45) <!-- TODO: replace with your real handle -->  
+**GitHub:** uliyach45(https://github.com/uliyach45) <!-- TODO: replace with your real handle -->  
 **Email:** uliyafatima82@gmail.com <!-- TODO: add your public email -->  
 **Domain:** Cyber Security - SOC, Detection Engineering, Threat Intelligence
 
